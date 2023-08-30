@@ -32,17 +32,7 @@
 <body>
   <div class="container">
     <h1>D-Day 일정</h1>
-    <div class="event">
-      <span>일정:</span>
-      <span id="event1"></span>
-    </div>
-    <div class="countdown" id="countdown1"></div>
-    <hr>
-    <div class="event">
-      <span>일정:</span>
-      <span id="event2"></span>
-    </div>
-    <div class="countdown" id="countdown2"></div>
+    <div id="eventsContainer"></div>
   </div>
 
   <script>
@@ -52,22 +42,30 @@
       { date: "2023-11-16", event: "수능" },
       { date: "2023-11-20", event: "2차 지필" },
       { date: "2024-01-04", event: "졸업" }
-      ];
+    ];
 
-    function updateCountdown(eventIndex) {
-      const event = events[eventIndex];
+    const eventsContainer = document.getElementById("eventsContainer");
+
+    for (let i = 0; i < events.length; i++) {
+      const event = events[i];
       const date = new Date(event.date);
       const today = new Date();
       const DDay = Math.ceil((date - today) / (1000 * 60 * 60 * 24));
-      const eventElement = document.getElementById(`event${eventIndex + 1}`);
-      const countdownElement = document.getElementById(`countdown${eventIndex + 1}`);
-      
-      eventElement.textContent = event.event;
-      countdownElement.textContent = `D-${DDay}`;
-    }
 
-    for (let i = 0; i < events.length; i++) {
-      updateCountdown(i);
+      const eventDiv = document.createElement("div");
+      eventDiv.className = "event";
+      eventDiv.innerHTML = `
+        <span>일정:</span>
+        <span>${event.event}</span>
+      `;
+
+      const countdownDiv = document.createElement("div");
+      countdownDiv.className = "countdown";
+      countdownDiv.textContent = `D-${DDay}`;
+
+      eventsContainer.appendChild(eventDiv);
+      eventsContainer.appendChild(countdownDiv);
+      eventsContainer.appendChild(document.createElement("hr"));
     }
   </script>
 </body>
