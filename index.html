@@ -36,6 +36,10 @@
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+    #clock {
+      font-size: 24px;
+      text-align: right;
+    }
   </style>
 </head>
 <body>
@@ -47,6 +51,21 @@
     <a href="SL.html">급식표 보러가기</a>
     <h2>프로젝트2 - D-Day</h2>
     <a href="DDay.html">중요 일정 보러가기</a>
+    <div id="clock"></div>
   </div>
 </body>
+<script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const timeString = `${hours}:${minutes}:${seconds}`;
+
+      document.getElementById('clock').textContent = timeString;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
 </html>
