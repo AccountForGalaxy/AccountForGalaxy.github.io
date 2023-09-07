@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <h1>시험 채점 프로그램</h1>
+
+  <div>
+    <label for="answers">답 입력:</label>
+    <input type="text" id="answers" placeholder="예: 123...">
+  </div>
+
+  <button onclick="calculateScore()">채점</button>
+
+  <div id="score"></div>
+
+  <script>
+    const correctAnswers = [1, 2, 3];
+    const scores = [2, 2, 3];
+    
+    function calculateScore() {
+      const userAnswersInput = document.getElementById("answers").value;
+      const userAnswers = userAnswersInput.split('').map(answer => parseInt(answer));
+      
+      let score = 0;
+      
+      for (let i = 0; i < correctAnswers.length; i++) {
+        if (userAnswers[i] === correctAnswers[i]) {
+          score += scores[i];
+        }
+      }
+
+      document.getElementById("score").innerHTML = `점수: ${score}`;
+    }
+  </script>
+</body>
+</html>
