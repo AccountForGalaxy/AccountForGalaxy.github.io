@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>글자 수 세기 프로그램</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        textarea {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+        p {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>글자 수 세기 프로그램</h1>
+    <textarea id="textInput" rows="4" cols="50" oninput="countCharacters()"></textarea>
+    <p>글자 수: <span id="characterCount">0</span></p>
+
+    <script>
+        function countCharacters() {
+            const textInput = document.getElementById("textInput");
+            const characterCount = document.getElementById("characterCount");
+            const text = textInput.value;
+            const count = text.length;
+            characterCount.textContent = count;
+        }
+    </script>
+</body>
+</html>
