@@ -13,14 +13,21 @@
             text-align: center;
             margin-top: 20px;
         }
-        textarea {
-            display: block;
-            margin: 20px auto;
-            padding: 10px;
+        .container {
             width: 80%;
             max-width: 600px;
-            border: 1px solid #ccc;
+            margin: 20px auto;
             background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
         }
         p {
             text-align: center;
@@ -30,8 +37,10 @@
 </head>
 <body>
     <h1>글자 수 세기 프로그램</h1>
-    <textarea id="textInput" rows="4" cols="50" oninput="countCharacters()"></textarea>
-    <p>글자 수: <span id="characterCount">0</span></p>
+    <div class="container">
+        <textarea id="textInput" rows="4" cols="50" oninput="countCharacters()"></textarea>
+        <p>글자 수: <span id="characterCount">0</span></p>
+    </div>
 
     <script>
         function countCharacters() {
