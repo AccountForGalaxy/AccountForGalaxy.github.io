@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exam Schedule</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .schedule {
+        text-align: center;
+        margin: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .date {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .exam {
+        font-size: 18px;
+        margin-top: 10px;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .tooltip {
+        visibility: hidden;
+        width: 250px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .exam:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exam Schedule</h1>
+
+    <div class="schedule">
+      <div class="date">10/16(월)</div>
+      <div class="exam">
+        <span>1교시 - 미적</span>
+        <div class="tooltip">IV 여러 가지 적분법 1. 여러 가지 함수의 적분 ~ 6. 속도와 거리</div>
+      </div>
+      <div class="exam">
+        <span>2교시 - 생과</span>
+        <div class="tooltip">교과서 122~172쪽 / 건축과 과학 학습지 1~6쪽 / 교통과 과학 학습지 1~5쪽 / 해당 범위 수업 PPT 자료</div>
+      </div>
+    </div>
+
+    <div class="schedule">
+      <div class="date">10/17(화)</div>
+      <div class="exam">
+        <span>1교시 - 언매</span>
+        <div class="tooltip">교과서 3단원 (1) 110~131쪽, 4단원 (1)~(2) 156~181쪽, 5단원 (1) 210~223쪽 / 학습 유인물 / 모의고사 기출문제 등</div>
+      </div>
+      <div class="exam">
+        <span>2교시 - 물2</span>
+        <div class="tooltip">교과서 112쪽~171쪽</div>
+      </div>
+    </div>
+
+    <div class="schedule">
+      <div class="date">10/18(수)</div>
+      <div class="exam">
+        <span>1교시 - 생윤</span>
+        <div class="tooltip">교과서 10쪽~214쪽</div>
+      </div>
+    </div>
+
+  </body>
+</html>
