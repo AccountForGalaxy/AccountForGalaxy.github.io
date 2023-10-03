@@ -1,26 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTesting</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
         .board {
             display: grid;
             grid-template-columns: repeat(15, 40px);
             grid-gap: 1px;
+            margin-top: 20px;
         }
         .cell {
             width: 40px;
             height: 40px;
-            border: 1px solid #000;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
             text-align: center;
             font-size: 24px;
             cursor: pointer;
         }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #0074cc;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>GameTesting</h1>
-    <div class="board" id="board"></div>
+    <div class="container">
+        <h1>GameTesting</h1>
+        <div class="board" id="board"></div>
+        <button onclick="resetGame()">게임 초기화</button>
+    </div>
+
     <script>
         const board = document.getElementById("board");
         const rows = 15;
@@ -110,7 +146,8 @@
         }
 
         createBoard();
-    </script>
-    <button onclick="resetGame()">게임 초기화</button>
+</script>
+
 </body>
 </html>
+
