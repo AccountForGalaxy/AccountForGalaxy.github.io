@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GameTesting</title>
+    <style>
+        .board {
+            display: grid;
+            grid-template-columns: repeat(15, 40px);
+            grid-gap: 1px;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>GameTesting</h1>
+    <div class="board" id="board"></div>
+    <script>
+        const board = document.getElementById("board");
+        const rows = 15;
+        const cols = 15;
+        let currentPlayer = "X";
+        let gameOver = false;
+        let grid = [];
+
+        function createBoard() {
+            for (let i = 0; i < rows; i++) {
+                grid[i] = Array(cols).fill('');
+                for (let j = 0; j < cols; j++) {
+                    const cell = document.createElement("div");
+                    cell.classList.add("cell");
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    cell.addEventListener("click", handleCellClick);
+                    board.appendChild(cell);
+                }
+            }
+        }
+
+        function handleCellClick(event) {
+            if (gameOver) return;
+            const cell = event.target;
+            const row = parseInt(cell.dataset.row);
+            const col = parseInt(cell.dataset.col);
+
+            if (grid[row][col] === '') {
+                grid[row][col] = currentPlayer;
+                cell.textContent = currentPlayer;
+                if (checkWinCondition(row, col)) {
+                    alert(`${currentPlayer} 플레이어가 승리했습니다!`);
+                    gameOver = true;
+                } else {
+                    currentPlayer = currentPlayer === "X" ? "O" : "X";
+                }
+            }
+        }
+
+        function checkWinCondition(row, col) {
+            return (
+                checkDirection(row, col, 1, 0) || 
+                checkDirection(row, col, 0, 1) || 
+                checkDirection(row, col, 1, 1) || 
+                checkDirection(row, col, 1, -1)   
+            );
+        }
+
+        function checkDirection(row, col, dr, dc) {
+            const symbol = grid[row][col];
+            let count = 1;
+
+            for (let i = 1; i <= 4; i++) {
+                const newRow = row + i * dr;
+                const newCol = col + i * dc;
+
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && grid[newRow][newCol] === symbol) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+
+            for (let i = 1; i <= 4; i++) {
+                const newRow = row - i * dr;
+                const newCol = col - i * dc;
+
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && grid[newRow][newCol] === symbol) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+
+            return count >= 5;
+        }
+
+        function resetGame() {
+            const cells = document.querySelectorAll(".cell");
+            cells.forEach(cell => {
+                cell.textContent = "";
+            });
+            currentPlayer = "X";
+            gameOver = false;
+            grid = grid.map(row => row.map(() => ''));
+        }
+
+        createBoard();
+    </script>
+    <button onclick="resetGame()">게임 초기화</button>
+</body>
+</html>
