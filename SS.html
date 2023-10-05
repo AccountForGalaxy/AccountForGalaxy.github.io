@@ -52,16 +52,18 @@
                 const startTime = addMinutes(classStartTime, i * 50);
                 const endTime = addMinutes(startTime, modifiedClassDurations[i]);
 
-                // 중첩 여부 확인
                 const isOverlapping = endTime > lunchStartTime && startTime < lunchEndTime;
 
-                // 중첩되지 않는 경우에만 시간표에 추가
                 if (!isOverlapping) {
                     timetableHTML += `
                         <p>${classNumber}교시 - 시작 시간: ${startTime}, 종료 시간: ${endTime}</p>
                     `;
                 }
             }
+
+            timetableHTML += `
+                <p>점심시간 - 시작 시간: ${lunchStartTime}, 종료 시간: ${lunchEndTime}</p>
+            `;
 
             timetable.innerHTML = timetableHTML;
         }
