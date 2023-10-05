@@ -37,11 +37,12 @@
             const lunchDuration = 60;
 
             for (let i = 0; i < numClasses; i++) {
-                classDurations.push(50); 
+                classDurations.push(50);
             }
 
+            const lunchEndTime = addMinutes(lunchStartTime, lunchDuration - lunchShortening);
+
             const modifiedClassDurations = classDurations.map(duration => duration - classShortening);
-            const modifiedLunchDuration = lunchDuration - lunchShortening;
 
             const timetable = document.getElementById("timetable");
             let timetableHTML = "<p>생성된 시간표:</p>";
@@ -51,15 +52,12 @@
                 const startTime = addMinutes(classStartTime, i * 50);
                 const endTime = addMinutes(startTime, modifiedClassDurations[i]);
 
-                timetableHTML += `
-                    <p>${classNumber}교시 - 시작 시간: ${startTime}, 종료 시간: ${endTime}</p>
-                `;
+                if (!(endTime > lunchStartTime && startTime < lunchEndTime)) {
+                    timetableHTML += `
+                        <p>${classNumber}교시 - 시작 시간: ${startTime}, 종료 시간: ${endTime}</p>
+                    `;
+                }
             }
-
-            const lunchEndTime = addMinutes(lunchStartTime, modifiedLunchDuration);
-            timetableHTML += `
-                <p>점심시간 - 시작 시간: ${lunchStartTime}, 종료 시간: ${lunchEndTime}</p>
-            `;
 
             timetable.innerHTML = timetableHTML;
         }
