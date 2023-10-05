@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Schedule</title>
+</head>
+<body>
+    <h1>오늘 교시 시간표</h1>
+    <label for="classType">6교시 또는 7교시 선택:</label>
+    <select id="classType">
+        <option value="6교시">6교시</option>
+        <option value="7교시">7교시</option>
+    </select>
+    <br>
+    <label for="classShortening">수업 시간 단축 시간 (분):</label>
+    <input type="number" id="classShortening" min="0">
+    <br>
+    <label for="lunchShortening">점심시간 단축 시간 (분):</label>
+    <input type="number" id="lunchShortening" min="0">
+    <br>
+    <button onclick="generateTimetable()">시간표 생성</button>
+    <br>
+    <h2>시간표:</h2>
+    <div id="timetable"></div>
+
+    <script>
+        function generateTimetable() {
+            const classType = document.getElementById("classType").value;
+            const classShortening = parseInt(document.getElementById("classShortening").value);
+            const lunchShortening = parseInt(document.getElementById("lunchShortening").value);
+
+            const classStartTime = (classType === "6교시") ? "08:00" : "09:00";
+            const classEndTime = (classType === "6교시") ? "08:50" : "09:50";
+
+            const lunchStartTime = "12:00";
+            const lunchEndTime = "13:00";
+
+            const modifiedClassStartTime = subtractTime(classStartTime, classShortening);
+            const modifiedClassEndTime = subtractTime(classEndTime, classShortening);
+            const modifiedLunchStartTime = subtractTime(lunchStartTime, lunchShortening);
+            const modifiedLunchEndTime = subtractTime(lunchEndTime, lunchShortening);
+
+            const timetable = document.getElementById("timetable");
+            timetable.innerHTML = `
+                <p>수업 시작 시간: ${modifiedClassStartTime}</p>
+                <p>수업 종료 시간: ${modifiedClassEndTime}</p>
+                <p>점심 시작 시간: ${modifiedLunchStartTime}</p>
+                <p>점심 종료 시간: ${modifiedLunchEndTime}</p>
+            `;
+        }
+
+        function subtractTime(time, minutes) {
+            const [hour, minute] = time.split(":").map(Number);
+            const totalMinutes = hour * 60 + minute;
+            const newTotalMinutes = totalMinutes - minutes;
+            const newHour = Math.floor(newTotalMinutes / 60);
+            const newMinute = newTotalMinutes % 60;
+            return `${String(newHour).padStart(2, '0')}:${String(newMinute).padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
