@@ -81,6 +81,10 @@
 
       document.getElementById('clock').textContent = timeString;
     }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
     const dday = new Date("2023-11-16T08:00:00");
     
     function Countdown() {
@@ -101,8 +105,5 @@
     }
 
     setInterval(Countdown, 1000);
-
-    updateClock();
-    setInterval(updateClock, 1000);
 </script>
 </html>
