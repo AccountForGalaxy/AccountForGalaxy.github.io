@@ -5,7 +5,7 @@
       const n2 = new Date();
       const time2 = dday2 - n2;
 
-      if (time <= 0) {
+      if (time2 <= 0) {
         document.getElementById("countdown2").textContent = "디데이 종료";
       } else {
         const d2 = Math.floor(time2 / (1000 * 60 * 60 * 24));
