@@ -45,6 +45,11 @@
       font-size: 24px;
       text-align: right;
     }
+    #countdown {
+      display: block;
+      font-size: 25px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -71,8 +76,8 @@
 <script>
     function updateClock() {
       const now = new Date();
-      const Fullyear = String(now.getFullyear()).padStart(2, '0');
-      const month = String(now.getMonth()).padStart(2, '0');
+      const Fullyear = String(now.getFullYear()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
       const date = String(now.getDate()).padStart(2, '0');
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
