@@ -55,7 +55,10 @@
 <body>
   <div class="container">
     <h1>은하수를 설명하다</h1>
+    <h2>2024학년도 수능</h2>
     <div id="countdown"></div>
+    <h2>2025학년도 수능</h2>
+    <div id="countdown2"></div>
     <p class="right">[ 1.6.1 ]</p>
     <a href="PI.html">프로젝트 설명</a>
     <a href="Update.html">패치노트</a>
@@ -110,5 +113,26 @@
     }
 
     setInterval(Countdown, 1000);
+  
+    const dday = new Date("2024-11-14T08:00:00");
+    
+    function Countdown2() {
+      const n2 = new Date();
+      const time2 = dday - n;
+
+      if (time <= 0) {
+        document.getElementById("countdown2").textContent = "디데이 종료";
+      } else {
+        const d2 = Math.floor(time / (1000 * 60 * 60 * 24));
+        const h2 = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m2 = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+        const s2 = Math.floor((time % (1000 * 60)) / 1000);
+      
+        const cdText = `${d2} : ${h2} : ${m2} : ${s2}`;
+        document.getElementById("countdown2").textContent = cdText;
+      }
+    }
+
+    setInterval(Countdown2, 1000);
 </script>
 </html>
