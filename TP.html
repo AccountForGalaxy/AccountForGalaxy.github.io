@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>
+      TestingPage
+    </title>
+  </head>
+  <body>
+  <div id="countdown"></div>
+
+  <script>
+    const ddayDate = new Date("2023-11-16T08:00:00");
+    
+    function Countdown() {
+      const now = new Date();
+      const time = ddayDate - now;
+
+      if (time <= 0) {
+        document.getElementById("countdown").textContent = "디데이 종료";
+      } else {
+        const d = Math.floor(time / (1000 * 60 * 60 * 24));
+        const h = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((time % (1000 * 60)) / 1000);
+        
+        const cdText = `${d} : ${h} : ${m} : ${s}`;
+        document.getElementById("countdown").textContent = cdText;
+      }
+    }
+
+    setInterval(Countdown, 1000);
+  </script>
+</html>
