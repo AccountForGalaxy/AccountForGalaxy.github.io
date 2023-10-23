@@ -1,5 +1,4 @@
-<script>
-  const dday2 = new Date("2024-11-14T08:00:00");
+const dday2 = new Date("2024-11-14T08:00:00");
     
     function Countdown2() {
       const n2 = new Date();
@@ -19,4 +18,3 @@
     }
 
     setInterval(Countdown2, 1000);
-</script>
