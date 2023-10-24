@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>원 둘레와 표시되지 않는 공백 그리기</title>
+  <title>마인크래프트 원 그리기</title>
 </head>
 <body>
-  <canvas id="myCanvas" width="400" height="400"></canvas>
-  <input type="number" id="radiusInput" placeholder="원의 지름">
-  <button onclick="drawCircle()">원 둘레와 공백 그리기</button>
+  <input type="number" id="radiusInput" placeholder="원의 반지름">
+  <button onclick="drawCircle()">원 그리기</button>
+  <div id="minecraftCanvas"></div>
 
   <script>
-    var canvas = document.getElementById('myCanvas');
-    var context = canvas.getContext('2d');
-
     function drawCircle() {
-      var centerX = canvas.width / 2;
-      var centerY = canvas.height / 2;
-
       var radiusInput = document.getElementById('radiusInput');
       var radius = parseFloat(radiusInput.value);
+      var minecraftCanvas = document.getElementById('minecraftCanvas');
 
-      context.clearRect(0, 0, canvas.width, canvas.height);
-
-      context.beginPath();
-      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-      context.lineWidth = 2; // 둘레 두께
-      context.strokeStyle = 'black'; // 둘레 색상
-      context.stroke();
-      
-      context.beginPath();
-      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, true); // 시계방향
-      context.lineWidth = 2; // 둘레 두께
-      context.strokeStyle = 'black'; // 둘레 색상
-      context.stroke();
+      // 마인크래프트 원 그리기
+      var circle = '<table>';
+      for (var y = -radius; y <= radius; y++) {
+        circle += '<tr>';
+        for (var x = -radius; x <= radius; x++) {
+          if (Math.sqrt(x * x + y * y) <= radius) {
+            circle += '<td>■</td>'; // 여기에서 블록 모양을 정의합니다.
+          } else {
+            circle += '<td></td>'; // 빈 공간
+          }
+        }
+        circle += '</tr>';
+      }
+      circle += '</table>';
+      minecraftCanvas.innerHTML = circle;
     }
   </script>
 </body>
 </html>
-
