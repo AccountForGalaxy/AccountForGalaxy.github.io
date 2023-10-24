@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>원 그리기</title>
+  <title>원 둘레와 표시되지 않는 공백 그리기</title>
 </head>
 <body>
   <canvas id="myCanvas" width="400" height="400"></canvas>
+  <input type="number" id="radiusInput" placeholder="원의 지름">
+  <button onclick="drawCircle()">원 둘레와 공백 그리기</button>
 
   <script>
-    const canvas = document.getElementById('myCanvas');
-    const context = canvas.getContext('2d');
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 50;
+    function drawCircle() {
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
 
-    context.beginPath();
-    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    context.fillStyle = 'blue';
-    context.fill();
-    context.lineWidth = 2;
-    context.strokeStyle = 'black';
-    context.stroke();
+      var radiusInput = document.getElementById('radiusInput');
+      var radius = parseFloat(radiusInput.value);
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.lineWidth = 2; // 둘레 두께
+      context.strokeStyle = 'black'; // 둘레 색상
+      context.stroke();
+      
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, true); // 시계방향
+      context.lineWidth = 2; // 둘레 두께
+      context.strokeStyle = 'black'; // 둘레 색상
+      context.stroke();
+    }
   </script>
 </body>
 </html>
+
