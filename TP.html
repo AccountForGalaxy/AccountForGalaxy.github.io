@@ -1,35 +1,9 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>마인크래프트 원 그리기</title>
-</head>
-<body>
-  <input type="number" id="radiusInput" placeholder="원의 반지름">
-  <button onclick="drawCircle()">원 그리기</button>
-  <div id="minecraftCanvas"></div>
+  <head>
+    <title>TestingPage</title>
+  </head>
+  <body>
+    
+  </body>
 
-  <script>
-    function drawCircle() {
-      var radiusInput = document.getElementById('radiusInput');
-      var radius = parseFloat(radiusInput.value);
-      var minecraftCanvas = document.getElementById('minecraftCanvas');
-
-      // 마인크래프트 원 그리기
-      var circle = '<table>';
-      for (var y = -radius; y <= radius; y++) {
-        circle += '<tr>';
-        for (var x = -radius; x <= radius; x++) {
-          if (Math.sqrt(x * x + y * y) <= radius) {
-            circle += '<td>■</td>'; // 여기에서 블록 모양을 정의합니다.
-          } else {
-            circle += '<td></td>'; // 빈 공간
-          }
-        }
-        circle += '</tr>';
-      }
-      circle += '</table>';
-      minecraftCanvas.innerHTML = circle;
-    }
-  </script>
-</body>
 </html>
