@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>남은 시간 표시</title>
+</head>
+<body>
+  <h1 id="remainingTime"></h1>
+  <button onclick="showHours()">시간</button>
+  <button onclick="showMinutes()">분</button>
+  <button onclick="showSeconds()">초</button>
+
+  <script>
+    const schedules = {
+      "월": [
+        "조회 오전 8시 50분 47.5초",
+        "1교시 오전 9시 00분 47.5초",
+        "쉬는시간 오전 9시 50분 47.5초",
+        "2교시 오전 10시 00분 47.5초",
+        "쉬는시간 오전 10시 50분 47.5초",
+        "3교시 오전 11시 00분 47.5초",
+        "쉬는시간 오전 11시 50분 47.5초",
+        "4교시 오후 12시 00분 47.5초",
+        "점심시간 오후 12시 50분 47.5초",
+        "점심 예비종 오후 13시 45분 47.5초",
+        "5교시 오후 13시 50분 47.5초",
+        "쉬는시간 오후 14시 40분 47.5초",
+        "6교시 오후 14시 50분 47.5초",
+        "쉬는시간 오후 15시 40분 47.5초",
+        "7교시 오후 15시 50분 47.5초",
+        "종례 오후 16시 40분 47.5초"
+      ],
+      "화": [
+        "조회 오전 8시 50분 47.5초",
+        "1교시 오전 9시 00분 47.5초",
+        "쉬는시간 오전 9시 50분 47.5초",
+        "2교시 오전 10시 00분 47.5초",
+        "쉬는시간 오전 10시 50분 47.5초",
+        "3교시 오전 11시 00분 47.5초",
+        "쉬는시간 오전 11시 50분 47.5초",
+        "4교시 오후 12시 00분 47.5초",
+        "점심시간 오후 12시 50분 47.5초",
+        "점심 예비종 오후 13시 45분 47.5초",
+        "5교시 오후 13시 50분 47.5초",
+        "쉬는시간 오후 14시 40분 47.5초",
+        "6교시 오후 14시 50분 47.5초",
+        "쉬는시간 오후 15시 40분 47.5초",
+        "7교시 오후 15시 50분 47.5초",
+        "종례 오후 16시 40분 47.5초"
+      ],
+      "수": [
+        "조회 오전 8시 50분 47.5초",
+        "1교시 오전 9시 00분 47.5초",
+        "쉬는시간 오전 9시 50분 47.5초",
+        "2교시 오전 10시 00분 47.5초",
+        "쉬는시간 오전 10시 50분 47.5초",
+        "3교시 오전 11시 00분 47.5초",
+        "쉬는시간 오전 11시 50분 47.5초",
+        "4교시 오후 12시 00분 47.5초",
+        "점심시간 오후 12시 50분 47.5초",
+        "점심 예비종 오후 13시 45분 47.5초",
+        "5교시 오후 13시 50분 47.5초",
+        "쉬는시간 오후 14시 40분 47.5초",
+        "6교시 오후 14시 50분 47.5초",
+        "종례 오후 15시 40분 47.5초"
+      ],
+      "목": [
+        "조회 오전 8시 50분 47.5초",
+        "1교시 오전 9시 00분 47.5초",
+        "쉬는시간 오전 9시 50분 47.5초",
+        "2교시 오전 10시 00분 47.5초",
+        "쉬는시간 오전 10시 50분 47.5초",
+        "3교시 오전 11시 00분 47.5초",
+        "쉬는시간 오전 11시 50분 47.5초",
+        "4교시 오후 12시 00분 47.5초",
+        "점심시간 오후 12시 50분 47.5초",
+        "점심 예비종 오후 13시 45분 47.5초",
+        "5교시 오후 13시 50분 47.5초",
+        "쉬는시간 오후 14시 40분 47.5초",
+        "6교시 오후 14시 50분 47.5초",
+        "쉬는시간 오후 15시 40분 47.5초",
+        "7교시 오후 15시 50분 47.5초",
+        "종례 오후 16시 40분 47.5초"
+      ],
+      "금": [
+        "조회 오전 8시 50분 47.5초",
+        "1교시 오전 9시 00분 47.5초",
+        "쉬는시간 오전 9시 50분 47.5초",
+        "2교시 오전 10시 00분 47.5초",
+        "쉬는시간 오전 10시 50분 47.5초",
+        "3교시 오전 11시 00분 47.5초",
+        "쉬는시간 오전 11시 50분 47.5초",
+        "4교시 오후 12시 00분 47.5초",
+        "점심시간 오후 12시 50분 47.5초",
+        "점심 예비종 오후 13시 45분 47.5초",
+        "5교시 오후 13시 50분 47.5초",
+        "쉬는시간 오후 14시 40분 47.5초",
+        "6교시 오후 14시 50분 47.5초",
+        "쉬는시간 오후 15시 40분 47.5초",
+        "7교시 오후 15시 50분 47.5초",
+        "종례 오후 16시 40분 47.5초"
+      ]
+    };
+
+    function getCurrentTime() {
+      return new Date();
+    }
+
+    function getRemainingTime() {
+      const currentTime = getCurrentTime();
+      const currentDay = currentTime.getDay();
+      const currentHours = currentTime.getHours();
+      const currentMinutes = currentTime.getMinutes();
+      const currentSeconds = currentTime.getSeconds();
+      const currentMilliseconds = currentTime.getMilliseconds();
+
+      const currentSchedule = schedules[currentDay === 3 ? "수" : ["월", "화", "목", "금"][currentDay]];
+
+      let closestScheduleTime = Infinity;
+      let remainingTime = '';
+
+      currentSchedule.forEach((schedule) => {
+        const [_, period, hour, minute, second] = schedule.split(' ');
+        let scheduleTime;
+
+        if (period === "오전") {
+          scheduleTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), parseInt(hour), parseInt(minute), parseInt(second.split('초')[0]));
+        } else {
+          scheduleTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), parseInt(hour) + 12, parseInt(minute), parseInt(second.split('초')[0]));
+        }
+
+        if (scheduleTime > currentTime && scheduleTime < closestScheduleTime) {
+          closestScheduleTime = scheduleTime;
+          remainingTime = schedule;
+        }
+      });
+
+      let difference = closestScheduleTime - currentTime - currentMilliseconds;
+      let hours = Math.floor(difference / (1000 * 60 * 60));
+      difference -= hours * (1000 * 60 * 60);
+      let minutes = Math.floor(difference / (1000 * 60));
+      difference -= minutes * (1000 * 60);
+      let seconds = Math.floor(difference / 1000);
+
+      return { hours, minutes, seconds, remainingTime };
+    }
+
+    function showHours() {
+      const { hours, remainingTime } = getRemainingTime();
+      document.getElementById("remainingTime").innerHTML = `${hours}시간 ${remainingTime}`;
+    }
+
+    function showMinutes() {
+      const { hours, minutes, remainingTime } = getRemainingTime();
+      const totalMinutes = hours * 60 + minutes;
+      document.getElementById("remainingTime").innerHTML = `${totalMinutes}분 ${remainingTime}`;
+    }
+
+    function showSeconds() {
+      const { hours, minutes, seconds, remainingTime } = getRemainingTime();
+      const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+      document.getElementById("remainingTime").innerHTML = `${totalSeconds}초 ${remainingTime}`;
+    }
+  </script>
+</body>
+</html>
