@@ -60,6 +60,7 @@
       font-size: 25px;
       text-align: center;
     }
+    <link rel="stylesheet" href="pw.css">
   </style>
 </head>
 <body>
@@ -87,9 +88,14 @@
     <h2>프로젝트5 - 챗봇</h2>
     <a href="CB.html">챗봇 바로가기</a>
     <br>
-    <a href="TP.html">TestingPage</a>
+    <a onclick="showPasswordInput()">TestingPage</a>
     <a href="DS.html">NewProject</a>
     <div id="clock"></div>
+    <div id="passwordInput">
+      <label for="password">암호:</label>
+      <input type="password" id="password" name="password">
+      <button onclick="checkPassword()">확인</button>
+    </div>
   </div>
   <a href="https://instagram.com/account_for_galaxy.0825?igshid=MzMyNGUyNmU2YQ=="><img src="Insta.png"></a>
 </body>
@@ -114,4 +120,5 @@
 <script src="cd.js"></script>
 <script src="cd2.js"></script>
 <script src="cdT.js"></script>
+<script src="pw.js"></script>
 </html>
