@@ -8,6 +8,7 @@ function checkPassword() {
 
   if (enter === correct) {
     alert('일치');
+    window.location.href = 'TP.html';
   } else {
     alert('불일치');
   }
